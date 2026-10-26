@@ -15,6 +15,39 @@ To encrypt and decrypt the given message by using Ceaser Cipher encryption algor
 8. If the choice is d, decrypt the message by reversing the shift direction.
 9. Display the resulting encrypted or decrypted message. If the choice is invalid, display an error message.
 
+## Program:
+```
+def caesar_cipher(text, shift):
+    result = ""
+    for char in text:
+        if char.isupper():
+            result += chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+        elif char.islower():
+            result += chr((ord(char) - ord('a') + shift) % 26 + ord('a'))
+        else:
+            result += char  # Keep spaces, numbers, and punctuation unchanged
+    return result
+
+# Get user choices
+choice = input("Encrypt or decrypt? (e/d): ").lower()
+message = input("Enter your message: ")
+shift = int(input("Enter shift value: ")) % 26
+
+# Handle choice logic correctly
+if choice == "d":
+    # For decryption, we reverse the shift direction
+    shift = -shift
+    print("Result:", caesar_cipher(message, shift))
+
+elif choice == "e":
+    # For encryption, we use the shift as entered
+    print("Result:", caesar_cipher(message, shift))
+
+else:
+    # Handle actual invalid choices
+    print("Invalid choice.")
+```
+
 ## Output:
 
 <img width="1562" height="830" alt="image" src="https://github.com/user-attachments/assets/d651b535-767f-4fed-bad4-226e0583b61f" />
